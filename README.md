@@ -20,6 +20,6 @@ The aim of this project is to develop a general, model-agnostic framework for ro
 ### Datasets
 ### Datasets
 
-1. Alok, S. (n.d.). *Cityscapes dataset*. Kaggle. https://www.kaggle.com/datasets/shuvoalok/cityscapes  
-2. Gehrig, S. (n.d.). *Lost and Found dataset*. DHBW Stuttgart. https://wwwlehre.dhbw-stuttgart.de/~sgehrig/lostAndFoundDataset/index.html  
-3. Fishyscapes. (n.d.). *Fishyscapes benchmark suite*. https://fishyscapes.com/
+1. Alok, S. (n.d.). *Cityscapes dataset*. Kaggle. [View](https://www.kaggle.com/datasets/shuvoalok/cityscapes)  
+2. Gehrig, S. (n.d.). *Lost and Found dataset*. DHBW Stuttgart. [View](https://wwwlehre.dhbw-stuttgart.de/~sgehrig/lostAndFoundDataset/index.html) 
+3. Fishyscapes. (n.d.). *Fishyscapes benchmark suite*. [View](https://fishyscapes.com/)
