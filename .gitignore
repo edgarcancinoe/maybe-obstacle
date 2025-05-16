@@ -1,2 +1,5 @@
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+/data/cityscapes/
+/data/.DS_Store
+/pipeline/__pycache__
