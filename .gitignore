@@ -1,2 +1,21 @@
+# Ignore Python virtual environments
+venv/
+ENV/
+env/
+.venv/
+
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+
+# Ignore dataset and output folders (optional, if large or generated)
+datasets/
+outputs/
+
+# Ignore VSCode settings (optional)
+.vscode/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
