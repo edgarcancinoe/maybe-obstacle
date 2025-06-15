@@ -1,2 +1,11 @@
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+/data/cityscapes/
+/data/.DS_Store
+/pipeline/__pycache__
+
+# Ignore VS Code settings folders
+**/.vscode/
+
+# Ignore macOS system files
+**/.DS_Store

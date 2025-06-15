@@ -1,0 +1,20 @@
+# This is a requirements file for a Python project.
+# Install the required packages using:
+# pip install -r requirements.txt
+
+# or
+
+# If you are using conda, you may want to create a new environment first:
+# conda create -n myenv python=3.8
+# conda activate myenv
+# Then install the required packages:
+# conda install --file requirements.txt
+numpy
+pandas
+matplotlib
+torch
+torchvision
+scikit-learn
+opencv-python
+tqdm
+nbstripout  # Optional, for stripping notebook metadata
