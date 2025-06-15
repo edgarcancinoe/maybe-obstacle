@@ -4,8 +4,11 @@
 /data/.DS_Store
 /pipeline/__pycache__
 
+
+
 # Ignore VS Code settings folders
 **/.vscode/
+.venv/
 
 # Ignore macOS system files
 **/.DS_Store
