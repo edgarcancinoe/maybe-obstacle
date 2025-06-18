@@ -53,6 +53,8 @@ While our current results are not yet competitive with state-of-the-art benchmar
 - Object detection on vehicles dataset
 - Object detection using **_UOS_** with a threshold > 0.5
 - Minimization of False Negatives using CRC
+- 
+![Evaluation Results](images/EvaluationResults.png)
 
 ## How to Run
 
