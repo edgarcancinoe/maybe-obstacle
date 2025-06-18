@@ -39,7 +39,9 @@ Applying a threshold to the _UOS_ enables detection of unknown obstacles while m
 - Object detection using **_UOS_** with a threshold > 0.5
 - Minimization of False Negatives using CRC
 
-## How to Run (TODO)
+## How to Run
+
+Google Colab was our choice to train our model for it's versatility and powerful processing units.
 
 ### Performance Warning:
 
