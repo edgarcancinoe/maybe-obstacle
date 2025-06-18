@@ -1,6 +1,6 @@
 # Uncertainty-Aware Road Obstacle Identification
 
-![Intro_IMG_2](images/intro_img.jpg)
+![Intro_IMG_2](images/intro_img_v2.jpg)
 
 ### Project Task
 
