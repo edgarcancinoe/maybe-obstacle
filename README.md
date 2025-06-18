@@ -1,8 +1,10 @@
 # Uncertainty-Aware Road Obstacle Identification
 
+![Intro_IMG](images/intro_img.jpg) 
+
 ### Project Task
 
-The aim of this project is to develop a general, model-agnostic framework for road obstacle identification based on semantic segmentation outputs. The system will focus on anomaly-aware semantic segmentation to detect obstacles outside predefined classes. Additionally, the framework will integrate uncertainty quantification using Conformal Prediction methods, providing formal statistical guarantees regarding detection reliability.
+The aim of this project is to develop a general, model-agnostic framework for road obstacle identification based on semantic segmentation outputs with uncertainty awareness. The system focuses on anomaly-aware semantic segmentation to detect obstacles outside predefined classes. Additionally, the framework integrates uncertainty quantification using Conformal Prediction methods, providing formal statistical guarantees regarding detection reliability.
 
 ## Main Objectives
 
@@ -10,36 +12,54 @@ The aim of this project is to develop a general, model-agnostic framework for ro
 2. **Statistical Uncertainty Quantification**: Use conformal prediction methods to ensure reliable detection metrics.
 3. **Comprehensive Evaluation**: Benchmark the system using both detection performance and uncertainty metrics.
 
-## Pipeline (TOVERIFY)
+## Pipeline
 
-In this prohject we did 3 main tasks:
+In this project we did 3 main tasks:
 
-- **Train a model to recognize road objects**: Fine tune an existing object recognition model to perform on vehicle POV, capturing surrounding data. We now can identify up to 32 objects (Cityscapes label map).
-  - **Unknown Score**: For each pixel, if it’s low probability for all known classes, it’s likely unknown.
-  - **Objectness Score**: For each pixel, probability of being an object (merging all known object classes into one “object” class).
-  - **Unknown Objectness Score (UOS)**: Multiply unknown and objectness scores for each pixel.
+- **Train a model to recognize road obstacles**:We fine-tune a DeepLabv3 model with a ResNet50 backbone and a sigmoid head using the Cityscapes dataset, adapting it to urban driving scenarios from an autonomous vehicle’s perspective.
+
+  - **Sigmoid head**: Allows to insert an object class and get independent probablilies per class
+  - **Unknown Score**: Measures the degree to which a pixel is unlikely to belong to any known class.
+  - **Objectness Class**: For each pixel, probability of being an object (merging all known object classes into one “object” class).
+  - **Unknown Objectness Score (UOS)**: Multiply unknown and objectness class for each pixel.
     - **High UOS** = probably an unknown obstacle.
-- **Focus on object-like pixels**: Group the object labels into a _smaller label map_, grouping objects and filtrating background elements. We now can predict if a pixel belongs to an object-like class or background class.
+  - **Boundary Awareness**:
+    - Boundarys were misunderstood and recognized as unknown, getting higher unknown score, even though they’re not objects. A  new boundary aware loss function was implemented and the model was retrained.
 
-  - Boundarys were misunderstood and recognized as unknown, getting higher unknown score, even though they’re not objects.
-  - We re-trained the model to be more careful on predicted object borders, resulting in a reduction in unknowness score on boundaries.
-  - We rose the threshold of what to be considered an object based on UOS score, to minimize false positives.
 
-- **Evaluate with Conformal Risk Control**: To further improve reliability, we implemented Conformal Risk Prediction, based on the papers Conformal Semantic Image Segmentation: Post-hoc Quantification of Predictive Uncertainty. and A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification.
+- **Conformal Risk Control**: To further improve reliability, we implemented Conformal Risk Control, based on the papers Conformal Semantic Image Segmentation: Post-hoc Quantification of Predictive Uncertainty. and A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification.
 
-  - Combined with the the _UOS_, conformal prediction allows to put a statistically valid confidence interval on unknown obstacle detection, or mark pixels/objects as “uncertain” with rigorous coverage guarantees.
+  - Combined with the _UOS_, conformal risk control provides a statistically valid thresholding mechanism when binarizing the unknown object score map.
 
-## What we accomplished (TOVERIFY)
+  - We focus on controlling the False Negative Rate (FNR) as the risk function, enabling the user to specify a maximum acceptable rate of missed obstacle detections (i.e., obstacles wrongly classified as background). This ensures a quantifiable and reliable detection behavior in safety-critical road environments.
 
-Applying a threshold to the _UOS_ enables detection of unknown obstacles while minimizing false positives from the background, calibrating the detection threshold to ensure the false negative rate stays below the desired level. The end results demonstrate that CRC reduces missed detections of small and rare obstacles while maintaining robust performance. This pipeline enables statistically valid, uncertainty-aware road obstacle detection and sets a new standard for safe deployment in real-world environments.
+- **Evaluation**: We evaluated our method on the Lost and Found and Road Anomaly datasets using three key metrics: AUROC (Area Under the Receiver Operating Characteristic Curve), Average Precision (AP), and False Positive Rate at 95% True Positive Rate (FPR@95%TPR). These metrics provide a comprehensive assessment of both detection accuracy and reliability under uncertainty, and can be directly compared with the Road Obstacle Detection based on Unknown Objectness Scores paper.
+
+## What we accomplished
+
+We developed a functional and modular pipeline capable of training semantic segmentation models and generating Unknown Object Score (UOS) maps. Using Conformal Risk Control (CRC), we are able to set a user-defined tolerance for false negative rates, enabling statistically valid uncertainty-aware decision thresholds.
+
+All main objectives of the project were successfully achieved:
+
+- We integrated anomaly-aware obstacle segmentation via the UOS framework.
+
+- We implemented Conformal Risk Control to provide statistical guarantees on detection reliability.
+
+- We conducted a comprehensive evaluation using standard metrics on both Lost and Found and Road Anomaly datasets, following the same experimental setup as the guiding research papers.
+
+While our current results are not yet competitive with state-of-the-art benchmarks, the pipeline proves to be robust and extensible. As future work, we plan to fine-tune the model on Lost and Found to improve performance and further validate our approach in real-world environments.
 
 ### Results
 
-- Object detection on vehicles dataset
-- Object detection using **_UOS_** with a threshold > 0.5
-- Minimization of False Negatives using CRC
+- AUROC : 
+- Average Precision: 
+- FPR@95%TPR : 
 
-## How to Run (TODO)
+![Intro_IMG](images/intro_img.jpg) 
+![Intro_IMG](images/intro_img.jpg) 
+
+
+## How to Run
 
 This project consists of 2 main Jupyter Notebooks
 
