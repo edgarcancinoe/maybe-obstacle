@@ -51,10 +51,15 @@ While our current results are not yet competitive with state-of-the-art benchmar
 ### Results
 
 - Object detection on vehicles dataset
+![Object Detection on LostAndFound](images/ObjectDetection.png)
 - Object detection using **_UOS_** with a threshold > 0.5
+![UOS using threshold > 0.5](images/UOSWithThreshold.png)
 - Minimization of False Negatives using CRC
-- 
+![UOSWithCRC](images/UOSWithCRC.png)
+- General Results (AP, FPR95, AUROC)
+![LostAndFound Evaluation](images/LostAndFoundEvaluation.jpeg)
 ![Evaluation Results](images/EvaluationResults.png)
+
 
 ## How to Run
 
